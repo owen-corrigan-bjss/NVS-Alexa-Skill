@@ -55,7 +55,7 @@ const PlayNewsletterIntentHandler = {
             const newsletterFeed = await getNewsletterFeed();
             // episodes filters the newsletter feed to get only those posts that contain audio
             if (!newsletterFeed || newsletterFeed.length === 0) {
-                throw new Error("No episodes found")
+                throw new Error('No episodes found')
             }
             const mostRecentNewsletter = newsletterFeed[0]
             const speakOutput = `Playing ${mostRecentNewsletter.title}`;
@@ -71,7 +71,7 @@ const PlayNewsletterIntentHandler = {
             return handlerInput.responseBuilder
                 .speak(errorMessage)
                 .reprompt(errorMessage)
-                .withSimpleCard("Error", errorMessage)
+                .withSimpleCard('Error', errorMessage)
                 .getResponse();
         }
     }
@@ -87,7 +87,7 @@ const ListEventsIntentHandler = {
             const whatsOnFeed = await getWhatsOnFeed();
  
             if (!whatsOnFeed|| whatsOnFeed.length === 0 ) {
-                throw new Error("No events")
+                throw new Error('No events')
             }
             
             const eventNames = whatsOnFeed.map((event) => `\n ${event.title}`);
@@ -107,7 +107,7 @@ const ListEventsIntentHandler = {
             return handlerInput.responseBuilder
                 .speak(errorMessage)
                 .reprompt(errorMessage)
-                .withSimpleCard("Error", errorMessage)
+                .withSimpleCard('Error', errorMessage)
                 .getResponse();
         }
     }
@@ -123,7 +123,7 @@ const DescribeEventIntentHandler = {
             const whatsOnFeed = await getWhatsOnFeed();
             console.log(whatsOnFeed)
             if (!whatsOnFeed|| whatsOnFeed.length === 0 ) {
-                throw new Error("No events")
+                throw new Error('No events')
             }
             
             const eventToDescribe = whatsOnFeed.filter((event) => event.title.toLowerCase().includes(handlerInput.requestEnvelope.request.intent.slots.eventName.value));
@@ -143,7 +143,7 @@ const DescribeEventIntentHandler = {
             return handlerInput.responseBuilder
                 .speak(errorMessage)
                 .reprompt(errorMessage)
-                .withSimpleCard("Error", errorMessage)
+                .withSimpleCard('Error', errorMessage)
                 .getResponse();
         }
     }
@@ -156,12 +156,12 @@ const PauseAudioIntentHandler = {
             && request.intent.name === 'AMAZON.PauseIntent';
     },
     async handle(handlerInput) {
-        const pauseText = "I'm sorry but pausing is currently unsupported. I have stopped the newsletter, but you will have to play it from the start. Is there anything else you would like to hear?"
+        const pauseText = 'I\'m sorry but pausing is currently unsupported. I have stopped the newsletter, but you will have to play it from the start. Is there anything else you would like to hear?'
         return handlerInput.responseBuilder
             .speak(pauseText)
             .addAudioPlayerStopDirective()
             .reprompt(pauseText)
-            .withSimpleCard("Pause unsupported", pauseText)
+            .withSimpleCard('Pause unsupported', pauseText)
             .getResponse();
     }
 };
@@ -173,12 +173,12 @@ const ResumeAudioIntentHandler = {
             && request.intent.name === 'AMAZON.ResumeIntent';
     },
     async handle(handlerInput) {
-        const resumeText = "I'm sorry but resuming is currently unsupported. You will have to play the newsletter from the start. Is there anything else you would like to hear?"
+        const resumeText = 'I\'m sorry but resuming is currently unsupported. You will have to play the newsletter from the start. Is there anything else you would like to hear?'
         return handlerInput.responseBuilder
             .speak(resumeText)
             .addAudioPlayerStopDirective()
             .reprompt(resumeText)
-            .withSimpleCard("Resume unsupported", resumeText)
+            .withSimpleCard('Resume unsupported', resumeText)
             .getResponse();
     }
 };
@@ -193,7 +193,7 @@ const HelpIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .withSimpleCard('Newcastle Vision Support Help', `Say one of the following: \n "play newsletter" \n "list events" \n "tell me about..."`)
+            .withSimpleCard('Newcastle Vision Support Help', `Say one of the following: \n 'play newsletter' \n 'list events' \n 'tell me about...'`)
             .reprompt(speakOutput)
             .getResponse();
     }
@@ -214,11 +214,7 @@ const CancelAndStopIntentHandler = {
             .getResponse();
     }
 };
-/* *
- * FallbackIntent triggers when a customer says something that doesn’t map to any intents in your skill
- * It must also be defined in the language model (if the locale supports it)
- * This handler can be safely added but will be ignored in locales that do not support it yet 
- * */
+
 const FallbackIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -233,26 +229,17 @@ const FallbackIntentHandler = {
             .getResponse();
     }
 };
-/* *
- * SessionEndedRequest notifies that a session was ended. This handler will be triggered when a currently open 
- * session is closed for one of the following reasons: 1) The user says "exit" or "quit". 2) The user does not 
- * respond or says something that does not match an intent defined in your voice model. 3) An error occurs 
- * */
+
 const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
     },
     handle(handlerInput) {
         console.log(`~~~~ Session ended: ${JSON.stringify(handlerInput.requestEnvelope)}`);
-        // Any cleanup logic goes here.
-        return handlerInput.responseBuilder.getResponse(); // notice we send an empty response
+        return handlerInput.responseBuilder.getResponse();
     }
 };
-/* *
- * The intent reflector is used for interaction model testing and debugging.
- * It will simply repeat the intent the user said. You can create custom handlers for your intents 
- * by defining them above, then also adding them to the request handler chain below 
- * */
+
 const IntentReflectorHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
@@ -263,15 +250,10 @@ const IntentReflectorHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
 };
-/**
- * Generic error handling to capture any syntax or routing errors. If you receive an error
- * stating the request handler chain is not found, you have not implemented a handler for
- * the intent being invoked or included it in the skill builder below 
- * */
+
 const ErrorHandler = {
     canHandle() {
         return true;
@@ -287,11 +269,6 @@ const ErrorHandler = {
     }
 };
 
-/**
- * This handler acts as the entry point for your skill, routing all request and response
- * payloads to the handlers above. Make sure any new handlers or interceptors you've
- * defined are included below. The order matters - they're processed top to bottom 
- * */
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,

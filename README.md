@@ -16,4 +16,4 @@ The skill has a secondary feature that allows you to list the events that have b
 
 Due to restrictions in how the charities website RSS feed is set up the date of the event was excluded. This meant having to filter based on when the event was posted.
 
-Pause and Resume intents currently not supported. The chairty has no budget and so the potential for accumulating costs by retrieving data from a DB meant this feature had to be ommited. 
+Pause and Resume intents currently not supported. The charity has no budget and so the potential for accumulating costs by retrieving data from a DB meant this feature had to be omitted. 

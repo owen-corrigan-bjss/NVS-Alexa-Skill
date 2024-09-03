@@ -1,0 +1,82 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "slots": [],
+          "name": "PlayNewsletterIntent",
+          "samples": [
+            "play newsletter",
+            "play podcast",
+            "play",
+            "what is the news",
+            "play the news",
+            "play latest newsletter"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "eventName",
+              "type": "AMAZON.CreativeWorkType"
+            }
+          ],
+          "name": "ListEventsIntent",
+          "samples": [
+            "read events",
+            "events",
+            "play events",
+            "list events",
+            "list"
+          ]
+        },
+        {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ResumeIntent",
+          "samples": []
+        },
+        {
+          "slots": [
+            {
+              "name": "eventName",
+              "type": "AMAZON.CreativeWorkType"
+            }
+          ],
+          "name": "DescribeEventIntent",
+          "samples": [
+            "{eventName}",
+            "tell me about {eventName}",
+            "give me {eventName}",
+            "describe {eventName}",
+            "open {eventName}"
+          ]
+        }
+      ],
+      "types": [],
+      "invocationName": "newcastle vision support"
+    }
+  }
+}
